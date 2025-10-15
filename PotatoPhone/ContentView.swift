@@ -10,19 +10,21 @@ import SwiftData
 
 import ContactsUI
 
-// TODO: Edit contact: add TZ
-// TODO: Show TZ on each contact somehow (maybe local time)
-// TODO: More easily mark as caught up
+// TODO: BUG! When I'm opening the timezone editor, it sometimes briefly disappears
 // TODO: Improve info on why you need to share your contacts and which option you should pick
-// TODO: If we're going to show birthday in the Edit contact sheet, maybe we should show
-// the other contact info too (phone numbers, emails) and just make it obvious that while
-// they cannot be edited in the app, they can be edited in Contacts
+// TODO: Show birthdays?
+// TODO: It would be nice if the timezone search bar was visible by default
+// TODO: More easily mark as caught up
+// TODO: If we're going to show birthday in the Edit contact sheet, maybe we should show the other contact info too (phone numbers, emails) and just make it obvious that while they cannot be edited in the app, they can be edited in Contacts
+// TODO: It's a bit weird how after I add a new contact, I have to search for them to find and edit their details
 
 struct ContentView: View {
     @Environment(\.modelContext) var context
     @Environment(\.scenePhase) private var scenePhase
-    // TODO: Also sort by name? TZ? birthday?
-    @Query(sort: \Contact.lastContacted) var contacts: [Contact]
+    @Query(sort: [
+        SortDescriptor(\Contact.lastContacted),
+        SortDescriptor(\Contact.identifier),
+    ]) var contacts: [Contact]
 
     @State private var showingContactPicker = false
     @State private var selectedNewContact: CNContact?
@@ -66,7 +68,7 @@ struct ContentView: View {
             if validContactPairs.isEmpty {
                 Text("No contacts added yet!")
             } else {
-                ForEach(validContactPairs) { pair in
+                List(validContactPairs) { pair in
                     ContactCell(contact: pair.contact, cnContact: pair.cnContact, contactToEdit: $contactToEdit) {
                         // Callback body
                         lastCalledContactPair = pair
@@ -139,10 +141,31 @@ struct ContactCell: View {
     @State private var showPhoneList = false
     @State private var showFTList = false
     
+    var localTimeString: String {
+        if contact.timeZoneID != NoneTZ {
+            if let timeZone = TimeZone(identifier: contact.timeZoneID) {
+                let formatter = DateFormatter()
+                formatter.timeZone = timeZone
+                formatter.dateFormat = "h:mm a" // e.g., "3:45 PM"
+                
+                return "Local: \(formatter.string(from: Date()))"
+            }
+            // TODO: Else error handling for bad timeZoneID
+        }
+        return ""
+    }
+    
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text("\(cnContact.givenName) \(cnContact.familyName)")
+                HStack {
+                    Text("\(cnContact.givenName) \(cnContact.familyName)")
+                        .font(.headline)
+                    if !localTimeString.isEmpty {
+                        Text(localTimeString)
+                    }
+                }
+                
 
                 let lastContactedText = contact.lastContacted == .distantPast
                     ? "Never"
@@ -232,8 +255,6 @@ struct ContactCell: View {
                 .presentationCompactAdaptation(.none) // prevents full-screen on iPhone
             }
         }
-        .padding()
-        Divider()
     }
     
     func getFacetimeURL(phoneNumber: String) -> URL? {
@@ -336,8 +357,6 @@ struct UpdateContactSheet: View {
     @Environment(\.modelContext) var context
     @Environment(\.dismiss) private var dismiss
     @State private var showingDeleteConfirmation = false
-    // TODO: I think I leave this as nil?
-    @State private var selectedTimeZoneID: String = TimeZone.current.identifier
     
     @Bindable var contact: Contact
     var cnContact: CNContact
@@ -350,7 +369,7 @@ struct UpdateContactSheet: View {
                 Text(contactName)
                 .font(.headline)
                 .padding()
-                
+
                 Form {
                     // Last contacted
                     Section {
@@ -364,7 +383,7 @@ struct UpdateContactSheet: View {
                                 contact.lastContacted = Date.distantPast
                             }
                         } else {
-                            Button("None") {
+                            Button("Last Contacted: None") {
                                 contact.lastContacted = Date()  // Set default when user taps
                             }
                             .foregroundStyle(.secondary)
@@ -372,8 +391,8 @@ struct UpdateContactSheet: View {
                     }
                     // Time Zone
                     Section {
-                        NavigationLink(destination: TimeZoneSelectionView(selectedTimeZoneID: $selectedTimeZoneID)) {
-                            let city = selectedTimeZoneID.split(separator: "/").last!.replacingOccurrences(of: "_", with: " ")
+                        NavigationLink(destination: TimeZoneSelectionView(selectedTimeZoneID: $contact.timeZoneID)) {
+                            let city = contact.timeZoneID.split(separator: "/").last!.replacingOccurrences(of: "_", with: " ")
                             HStack {
                                 Text("Time Zone: \(city)")
                                 Spacer()
@@ -419,7 +438,8 @@ struct TimeZoneSelectionView: View {
     @Binding var selectedTimeZoneID: String
     @State private var searchText = ""
 
-    private let allTimeZoneIDs = TimeZone.knownTimeZoneIdentifiers
+    // Note: This is inefficient as it creates the list twice. Not sure if it matters
+    private let allTimeZoneIDs: [String] = [NoneTZ] + TimeZone.knownTimeZoneIdentifiers
         .filter { $0.contains("/") }
         .sorted {
             $0.split(separator: "/").last!.localizedCompare($1.split(separator: "/").last!) == .orderedAscending

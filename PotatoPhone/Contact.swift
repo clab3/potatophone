@@ -10,16 +10,18 @@ import SwiftData
 
 import ContactsUI
 
+let NoneTZ: String = "None"
+
 @Model
 class Contact {
     @Attribute(.unique) var identifier: String
     var lastContacted: Date
-    var timeZoneID: String?
+    var timeZoneID: String
     
     init(identifier: String) {
         self.identifier = identifier
         self.lastContacted = Date.distantPast
-        self.timeZoneID = nil
+        self.timeZoneID = NoneTZ
     }
     
     func tryFetchCNContact() -> CNContact? {
