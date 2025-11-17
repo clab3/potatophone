@@ -40,7 +40,7 @@ struct ContentView: View {
     var body: some View {
         VStack {
             HStack {
-                Text("Potato Contacts")
+                Text("Contacts")
                     .font(.headline)
                 Spacer()
                 Button(action: showContactPicker) {

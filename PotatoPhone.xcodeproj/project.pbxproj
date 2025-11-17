@@ -15,6 +15,7 @@
 		4893A0B42E85E7A100B94EDF /* PotatoPhoneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4893A0B32E85E7A100B94EDF /* PotatoPhoneUITests.swift */; };
 		4893A0B62E85E7A100B94EDF /* PotatoPhoneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4893A0B52E85E7A100B94EDF /* PotatoPhoneUITestsLaunchTests.swift */; };
 		4893A0C42E85FD4E00B94EDF /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4893A0C32E85FD4E00B94EDF /* Contacts.framework */; };
+		48E2079D2ECB9EA200948DCB /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48E2079C2ECB9EA200948DCB /* Launch Screen.storyboard */; };
 		48FB8A4D2E902C0800DFE3A5 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FB8A4C2E902C0800DFE3A5 /* Contact.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		4893A0B32E85E7A100B94EDF /* PotatoPhoneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PotatoPhoneUITests.swift; sourceTree = "<group>"; };
 		4893A0B52E85E7A100B94EDF /* PotatoPhoneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PotatoPhoneUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		4893A0C32E85FD4E00B94EDF /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
+		48E2079C2ECB9EA200948DCB /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		48FB8A4C2E902C0800DFE3A5 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,6 +81,7 @@
 		4893A08A2E85E7A000B94EDF = {
 			isa = PBXGroup;
 			children = (
+				48E2079C2ECB9EA200948DCB /* Launch Screen.storyboard */,
 				4893A0952E85E7A000B94EDF /* PotatoPhone */,
 				4893A0A82E85E7A100B94EDF /* PotatoPhoneTests */,
 				4893A0B22E85E7A100B94EDF /* PotatoPhoneUITests */,
@@ -246,6 +249,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48E2079D2ECB9EA200948DCB /* Launch Screen.storyboard in Resources */,
 				4893A0A02E85E7A100B94EDF /* Preview Assets.xcassets in Resources */,
 				4893A09D2E85E7A100B94EDF /* Assets.xcassets in Resources */,
 			);
@@ -435,17 +439,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PotatoPhone/Preview Content\"";
 				DEVELOPMENT_TEAM = AN428328J5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Phone Tag";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSContactsUsageDescription = "Provide access to your contacts so that you can call your friends!";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -455,6 +461,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ClabApps.PotatoPhone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -466,17 +476,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PotatoPhone/Preview Content\"";
 				DEVELOPMENT_TEAM = AN428328J5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Phone Tag";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSContactsUsageDescription = "Provide access to your contacts so that you can call your friends!";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -486,6 +498,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ClabApps.PotatoPhone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
