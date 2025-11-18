@@ -11,6 +11,8 @@ import SwiftData
 import ContactsUI
 
 // TODO: BUG! When I'm opening the timezone editor, it sometimes briefly disappears
+// TODO: BUG! If the contact at the top of the list has multiple FT addresses, the bubble does
+// not expand to fix them
 // TODO: Improve info on why you need to share your contacts and which option you should pick
 // TODO: Show birthdays?
 // TODO: It would be nice if the timezone search bar was visible by default
