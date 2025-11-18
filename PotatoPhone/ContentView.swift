@@ -180,6 +180,7 @@ struct ContactCell: View {
                 Image(systemName: "pencil")
                     .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
             }
+            .buttonStyle(.plain)
                 
             // Phone Call Button
             let phoneNumbers = cnContact.phoneNumbers
@@ -190,6 +191,7 @@ struct ContactCell: View {
                 Image(systemName: "phone")
                     .foregroundColor(callButtonColor)
             }
+            .buttonStyle(.plain)
             .popover(isPresented: $showPhoneList, attachmentAnchor: .rect(.bounds), arrowEdge: .bottom) {
                 VStack(alignment: .leading, spacing: 8) {
                     if phoneNumbers.isEmpty {
@@ -228,6 +230,7 @@ struct ContactCell: View {
                 Image(systemName: "video")
                     .foregroundColor(ftButtonColor)
             }
+            .buttonStyle(.plain)
             .popover(isPresented: $showFTList, attachmentAnchor: .rect(.bounds), arrowEdge: .bottom) {
                 VStack(alignment: .leading, spacing: 8) {
                     if ftStringURLPairs.isEmpty {
