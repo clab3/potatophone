@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -51,6 +51,10 @@
 		48E2079C2ECB9EA200948DCB /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		48FB8A4C2E902C0800DFE3A5 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		48AD8CC72EE608F1006359E4 /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		4893A0902E85E7A000B94EDF /* Frameworks */ = {
@@ -103,6 +107,7 @@
 		4893A0952E85E7A000B94EDF /* PotatoPhone */ = {
 			isa = PBXGroup;
 			children = (
+				48AD8CC72EE608F1006359E4 /* Views */,
 				4893A0962E85E7A000B94EDF /* PotatoPhoneApp.swift */,
 				4893A0982E85E7A000B94EDF /* ContentView.swift */,
 				4893A09C2E85E7A100B94EDF /* Assets.xcassets */,
@@ -159,6 +164,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				48AD8CC72EE608F1006359E4 /* Views */,
 			);
 			name = PotatoPhone;
 			productName = PotatoPhone;
